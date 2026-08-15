@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { CheckIcon, CloseIcon } from "./icons";
+import { CheckIcon } from "./icons";
 import { supabase } from "@/integrations/supabase/client";
 import { getReporterId, type Facility } from "@/lib/cleanscan";
 
@@ -47,7 +47,7 @@ export function ReportSheet({
   const [lighting, setLighting] = useState(true);
   const [door, setDoor] = useState(true);
   const [status, setStatus] = useState<"working" | "broken">("working");
-  const [state, setState] = useState<"idle" | "saving" | "done">("idle");
+  const [state, setState] = useState<"idle" | "saving" | "done" | "error">("idle");
 
   async function submit() {
     setState("saving");
@@ -60,7 +60,7 @@ export function ReportSheet({
       reporter_id: getReporterId(),
     });
     if (error) {
-      setState("idle");
+      setState("error");
       return;
     }
     setState("done");
@@ -69,8 +69,8 @@ export function ReportSheet({
   }
 
   return (
-    <div className="flex flex-col gap-4 px-5 pb-6 pt-4 sm:px-6">
-      <div className="flex items-start justify-between gap-4">
+    <div className="flex flex-col gap-4 px-5 pb-6 pt-5 sm:px-6">
+      <div className="flex items-baseline justify-between gap-4">
         <div>
           <h2 className="text-[20px] font-semibold tracking-tight">Report</h2>
           <p className="mt-1 text-[14px] text-muted">{facility.name}</p>
@@ -78,18 +78,18 @@ export function ReportSheet({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close"
-          className="-mr-1 -mt-1 p-1 text-muted transition-opacity hover:opacity-60"
+          className="text-[15px] text-muted transition-opacity hover:opacity-60"
         >
-          <CloseIcon />
+          Cancel
         </button>
       </div>
 
       <div className="divide-y divide-black/5">
-        <Toggle label="Water available" value={water} onChange={setWater} />
-        <Toggle label="Lighting OK" value={lighting} onChange={setLighting} />
-        <Toggle label="Door functional" value={door} onChange={setDoor} />
+        <Toggle label="Water" value={water} onChange={setWater} />
+        <Toggle label="Lighting" value={lighting} onChange={setLighting} />
+        <Toggle label="Door" value={door} onChange={setDoor} />
       </div>
+
 
       <div>
         <p className="label-xs">Overall</p>
@@ -117,7 +117,7 @@ export function ReportSheet({
 
       <button
         type="button"
-        disabled={state !== "idle"}
+        disabled={state === "saving" || state === "done"}
         onClick={submit}
         className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-ink py-3.5 text-[16px] font-medium text-surface transition-opacity hover:opacity-90 disabled:opacity-100"
       >
@@ -131,6 +131,11 @@ export function ReportSheet({
           "Submit Report"
         )}
       </button>
+
+      {state === "error" && (
+        <p className="text-[13px] text-alert">Could not submit. Please try again.</p>
+      )}
     </div>
+
   );
 }
