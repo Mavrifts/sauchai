@@ -117,7 +117,7 @@ export function ReportSheet({
 
       <button
         type="button"
-        disabled={state !== "idle"}
+        disabled={state === "saving" || state === "done"}
         onClick={submit}
         className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-ink py-3.5 text-[16px] font-medium text-surface transition-opacity hover:opacity-90 disabled:opacity-100"
       >
@@ -131,6 +131,11 @@ export function ReportSheet({
           "Submit Report"
         )}
       </button>
+
+      {state === "error" && (
+        <p className="text-[13px] text-alert">Could not submit. Please try again.</p>
+      )}
     </div>
+
   );
 }
