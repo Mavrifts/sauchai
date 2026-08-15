@@ -34,7 +34,7 @@ export type Facility = Toilet & {
 };
 
 export const STATUS_LABEL: Record<Status, string> = {
-  good: "Working",
+  good: "Verified",
   warn: "Unverified",
   alert: "Discrepancy",
 };
