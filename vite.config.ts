@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Pre-bundle these up front so Vite doesn't re-optimize mid-session,
+    // which invalidates already-loaded module URLs in an open tab.
+    optimizeDeps: {
+      include: ["@supabase/supabase-js", "leaflet", "react-leaflet"],
+    },
+  },
 });
