@@ -14,17 +14,17 @@ const ToiletMap = lazy(() => import("@/components/cleanscan/ToiletMap"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CleanScan — Live public toilet status in Jaipur" },
+      { title: "Sauch.ai — Realtime toilet status, Jaipur" },
       {
         name: "description",
         content:
-          "CleanScan checks citizen reports on Jaipur's public toilets against municipal maintenance records to reveal facilities that are broken but marked working.",
+          "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee.",
       },
-      { property: "og:title", content: "CleanScan — Live public toilet status in Jaipur" },
+      { property: "og:title", content: "Sauch.ai — Realtime toilet status, Jaipur" },
       {
         property: "og:description",
         content:
-          "Citizen reports vs. municipal records: see which public toilets in Jaipur are silently broken.",
+          "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee.",
       },
     ],
   }),

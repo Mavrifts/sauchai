@@ -77,13 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CleanScan Jaipur" },
+      { title: "Sauch.ai — Realtime toilet status, Jaipur" },
       {
         name: "description",
-        content: "Real-time public sanitation trust tool for Jaipur.",
+        content: "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Sauch.ai — Realtime toilet status, Jaipur" },
+      { name: "twitter:title", content: "Sauch.ai — Realtime toilet status, Jaipur" },
+      { property: "og:description", content: "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee." },
+      { name: "twitter:description", content: "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/8e9ce9fe-5372-4500-bc2f-ddf13cb7583e" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/8e9ce9fe-5372-4500-bc2f-ddf13cb7583e" },
     ],
     links: [
       {
@@ -91,7 +97,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "stylesheet", href: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
