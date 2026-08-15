@@ -14,7 +14,109 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      maintenance_logs: {
+        Row: {
+          created_at: string
+          id: string
+          last_serviced_date: string
+          official_status: string
+          toilet_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_serviced_date: string
+          official_status?: string
+          toilet_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_serviced_date?: string
+          official_status?: string
+          toilet_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "maintenance_logs_toilet_id_fkey"
+            columns: ["toilet_id"]
+            isOneToOne: false
+            referencedRelation: "toilets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reports: {
+        Row: {
+          created_at: string
+          door_functional: boolean
+          id: string
+          lighting_ok: boolean
+          overall_status: string
+          reporter_id: string
+          toilet_id: string
+          water_available: boolean
+        }
+        Insert: {
+          created_at?: string
+          door_functional?: boolean
+          id?: string
+          lighting_ok?: boolean
+          overall_status?: string
+          reporter_id?: string
+          toilet_id: string
+          water_available?: boolean
+        }
+        Update: {
+          created_at?: string
+          door_functional?: boolean
+          id?: string
+          lighting_ok?: boolean
+          overall_status?: string
+          reporter_id?: string
+          toilet_id?: string
+          water_available?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reports_toilet_id_fkey"
+            columns: ["toilet_id"]
+            isOneToOne: false
+            referencedRelation: "toilets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      toilets: {
+        Row: {
+          area: string
+          created_at: string
+          id: string
+          lat: number
+          lng: number
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          area: string
+          created_at?: string
+          id?: string
+          lat: number
+          lng: number
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          area?: string
+          created_at?: string
+          id?: string
+          lat?: number
+          lng?: number
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
