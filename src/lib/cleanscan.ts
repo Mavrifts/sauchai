@@ -71,11 +71,11 @@ export function formatServiceDate(date: string): string {
 
 /** Days the facility has been broken (or unheard from) without the record reflecting it. */
 function silentDays(reports: Report[], now: number): number {
-  if (reports.length === 0) return STALE_DAYS;
   const latest = reports[0];
+  if (!latest) return STALE_DAYS;
   const since = daysAgo(latest.created_at, now);
   if (latest.overall_status !== "broken") return since;
-  let start = latest;
+  let start: Report = latest;
   for (const r of reports) {
     if (r.overall_status !== "broken") break;
     start = r;
