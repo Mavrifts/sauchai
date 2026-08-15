@@ -78,7 +78,9 @@ function Row({ facility, rank }: { facility: Facility; rank: number }) {
 
         {flagged && (
           <p className="mt-1.5 text-[13px]" style={{ color: "var(--alert)" }}>
-            Marked working on paper for {facility.daysSilentlyBroken} days of citizen-reported failure.
+            {facility.latest?.overall_status === "broken"
+              ? `Marked working on paper for ${facility.daysSilentlyBroken} days of citizen-reported failure.`
+              : `Marked working on paper, but unverified by citizens for ${facility.daysSilentlyBroken} days.`}
           </p>
         )}
       </div>
