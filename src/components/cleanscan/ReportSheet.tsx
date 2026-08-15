@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { CheckIcon, CloseIcon } from "./icons";
+import { CheckIcon } from "./icons";
 import { supabase } from "@/integrations/supabase/client";
 import { getReporterId, type Facility } from "@/lib/cleanscan";
 
