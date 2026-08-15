@@ -88,8 +88,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Sauch.ai — Realtime toilet status, Jaipur" },
       { property: "og:description", content: "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee." },
       { name: "twitter:description", content: "Sauch.ai catches Jaipur toilets that have been \"under repair\" for a month while officially marked fine. The gap between paperwork and pee." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/8e9ce9fe-5372-4500-bc2f-ddf13cb7583e" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/8e9ce9fe-5372-4500-bc2f-ddf13cb7583e" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/dLOE1S5B7ngj1jytQfcxmHwEkmZ2/social-images/social-1786826890802-social-image.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/dLOE1S5B7ngj1jytQfcxmHwEkmZ2/social-images/social-1786826890802-social-image.webp" },
     ],
     links: [
       {
