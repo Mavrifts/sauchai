@@ -12,8 +12,8 @@ type Props = {
 export default function ToiletMap({ facilities, selectedId, priorityZones, onSelect }: Props) {
   return (
     <MapContainer
-      center={[26.8905, 75.77]}
-      zoom={12}
+      center={[26.865, 75.73]}
+      zoom={11}
       zoomControl={false}
       className="h-full w-full"
       attributionControl
