@@ -1,5 +1,7 @@
+import { useEffect } from "react";
+
 import { StatusBadge } from "./StatusDot";
-import { BulbIcon, CheckIcon, CloseIcon, CrossIcon, LockIcon, WaterIcon } from "./icons";
+import { BulbIcon, CheckIcon, CrossIcon, LockIcon, WaterIcon } from "./icons";
 import { formatServiceDate, relativeTime, type Facility } from "@/lib/cleanscan";
 
 function AspectRow({
@@ -39,21 +41,19 @@ export function ToiletDetail({
 }) {
   const latest = facility.latest;
 
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
-    <div className="flex flex-col gap-5 px-5 pb-6 pt-4 sm:px-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h2 className="text-[22px] font-semibold leading-tight tracking-tight">{facility.name}</h2>
-          <p className="mt-1 text-[14px] text-muted">{facility.area}, Jaipur</p>
-        </div>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="-mr-1 -mt-1 p-1 text-muted transition-opacity hover:opacity-60"
-        >
-          <CloseIcon />
-        </button>
+    <div className="flex flex-col gap-5 px-5 pb-6 pt-5 sm:px-6">
+      <div>
+        <h2 className="text-[22px] font-semibold leading-tight tracking-tight">{facility.name}</h2>
+        <p className="mt-1 text-[14px] text-muted">{facility.area}, Jaipur</p>
       </div>
 
       <StatusBadge status={facility.status} />
@@ -61,7 +61,7 @@ export function ToiletDetail({
       <div className="divide-y divide-black/5">
         <AspectRow icon={<WaterIcon />} label="Water" ok={latest ? latest.water_available : null} />
         <AspectRow icon={<BulbIcon />} label="Lighting" ok={latest ? latest.lighting_ok : null} />
-        <AspectRow icon={<LockIcon />} label="Door lock" ok={latest ? latest.door_functional : null} />
+        <AspectRow icon={<LockIcon />} label="Door" ok={latest ? latest.door_functional : null} />
       </div>
 
       <div>
